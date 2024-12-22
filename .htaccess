@@ -1,0 +1,14 @@
+# Blockiere nur GET-Anfragen mit Query-Parametern (z. B. ?param=value)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{QUERY_STRING} .+ [NC]
+    RewriteCond %{REQUEST_METHOD} GET
+    RewriteRule .* - [F]
+   
+</IfModule>
+
+# Benutzerdefinierte Fehlerseite für 404
+# Wenn ein Passwort generiert wurde, wird direkt zur Loginseite umgeleitet
+ ErrorDocument 404 /konfigurationsselbstauskunft/login.php 
+
+
