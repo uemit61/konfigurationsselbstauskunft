@@ -38,7 +38,7 @@
 
        function closeConnection()
        {
-            $this->pdo = null;
+            return null;
             echo "Connection closed";
        }
            
