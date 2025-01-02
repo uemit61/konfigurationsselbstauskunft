@@ -14,7 +14,7 @@
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
             <!-- Custom CSS -->
-            <link href='https://localhost/konfigurationsselbstauskunft/view/css/styles.css' rel='stylesheet'>
+            <link href='/konfigurationsselbstauskunft/view/css/styles.css' rel='stylesheet'>
             
             <!-- JQUERY-->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

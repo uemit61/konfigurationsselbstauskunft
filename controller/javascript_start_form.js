@@ -3,31 +3,6 @@
 
 $(document).ready(function () 
 {
-    console.log('start javascript');
-    
-    // if($('#open_main').length == 1)
-    // {
-    //     console.log($('#open_main').value);
-    // }
-
-
-
-
-
-    function sanitizeInput(formId)
-    {
-
-        var retVal =  $(formId).serializeArray().reduce
-        (
-            function(acc,field)
-            {
-                acc[field.name] = DOMPurify.sanitize(field.value.trim());
-                return acc;
-            },
-            {}
-        )   
-        return retVal;
-    };
 
     // Prüfung der Passwort Erstellung (mit jeder Buchtabeneingabe keyup)
 

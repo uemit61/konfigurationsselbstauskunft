@@ -46,7 +46,7 @@
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
 
                 <!-- Eigene JavaScript  -->
-                <script src="https://localhost/konfigurationsselbstauskunft/controller/f.js"></script>
+                <script type="modul" src="/konfigurationsselbstauskunft/controller/javascript_start_form.js"></script>
             </body>
             </html>
 <?php
