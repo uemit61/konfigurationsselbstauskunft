@@ -9,77 +9,35 @@
 * @since       2024-12-18
 */
 
-require 'form/customerInfo_form.php';
-require 'form/hostConfig_form.php';
 
-class MainForm
+require './view/own_templates/heads.php';
+require './view/own_templates/headers.php';
+require './view/forms/customerInfo_form.php';
+require './view/forms/hostConfig_form.php';
+require './view/forms/mandanten_form.php';
+require './view/forms/erp_form.php';
+require './view/forms/import_form.php';
+require './view/own_templates/footer.php';
+
+
+class Form_Page
 {
     
     function render($userData =[])
     {
-        
-        // // JSON-Antwort
-        // if(!empty($userData))
-        // {
-        //     header('Content-Type: application/json');
-        //     echo json_encode($userData);
-            
-        //     session_start();
-        //         // Todo Array abspeichern
-        //     session_write_close();
-            
-        // }
-        
-
 ?>
-
-        <!DOCTYPE html>
-        <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Kundenselbstauskunft</title>
-                <!-- Bootstrap CSS -->
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-
-                <!-- Font Awesome for Icons -->
-                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-                <!-- Custom CSS -->
-                <link href="./view/css/styles.css" rel="stylesheet">
-
-                <!-- JQUERY-->
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            </head>
+        
+            <!-- Head -->
+            <?php bootstrap_jquery(); ?>
             
             <body>
-            
-                <header class="bg-white p-3">
-                    <nav class="navbar navbar-dark bg-white d-flex  justify-content-between  align-items-center">
-                        <!-- Logo -->
-                        <a class="navbar-brand disabled">
-                            <img src="./view/image/LogoHeintze.png" alt="Logo" class="logo" style="max-width: 150px;">
-                            
-                        </a>
-
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                        <!-- Abmelden-Button in der Navbar -->
-                        <div class=" d-flex align-items-center ">
-                            <a id="logoutIcon"  class="text-decoration-none d-flex align-items-center ms-3">
-                                <fa-2x class="fa-solid fa-right-from-bracket "></fa-solid> <!-- Abmelden-Icon -->
-                                <div class="ms-2">Abmelden</div>
-                            </a>
-                        </div>
-                    </nav>
-                </header>
-
+                    <!-- Header -->
+                    <?php logout_header(); ?>
+                
                 <main>
                     
                     <div class="container mt-5">
-                        <h2 class="text-center mb-4">Kundenselbstauskunft</h2>
+                        <h2 class="text-center mb-3">Kundenselbstauskunft</h2>
                         <!-- Tabs Navigation -->
                         <ul class="nav nav-tabs" id="tabs">
                             <li class="nav-item">
@@ -100,7 +58,7 @@ class MainForm
                         </ul>
 
                         <!-- Tabs Inhalte -->
-                        <div class="tab-content mt-4">
+                        <div class="tab-content mt-3">
                             <!-- Tab 1 Kontaktdaten Inhalt -->
 
                             <!--Die Klassen show und active werden beim Blättern der Form removed
@@ -121,37 +79,38 @@ class MainForm
                             <!-- Platzhalter für Tab 3 !Keine show und active Klassen Bem. s.O -->
                             <div class="tab-pane fade" id="tab3">
                                 <h5>Mandanten</h5>
-                                <p>Hier kommen die Mandanten-Daten hin...</p>
+                                <?php mandanten_form(); ?> 
                             </div>
 
                             <!-- Platzhalter für Tab 4 !Keine show und active Klassen Bem. s.O -->
                             <div class="tab-pane fade" id="tab3">
                                 <h5>ERP-Einstellungen</h5>
-                                <p>Hier kommen die Mandanten-Daten hin...</p>
+                                <?php erp_form(); ?> 
                             </div>
 
                             <!-- Platzhalter für Tab 5 !Keine show und active Klassen Bem. s.O -->
                             <div class="tab-pane fade" id="tab3">
                                 <h5>Import</h5>
-                                <p>Hier kommen die Mandanten-Daten hin...</p>
+                                <?php import_form(); ?> 
                             </div>
 
                         </div>
 
                         <!-- Navigation -->
                         <div class="d-flex justify-content-between mt-4">
-                            <button class="btn btn-secondary" id="prevBtn">Zurück</button>
-                            <button class="btn btn-success" id="btn">Kontaktdaten speichern</button>
-                            <button class="btn btn-primary" id="nextBtn">Weiter</button>
+                            <button onclick="tap_back()" class="btn btn-secondary" id="prevBtn">Zurück</button>
+                            <button onclick="save_tabFrom_to_Db()" class="btn btn-success" id="btn">Kontaktdaten speichern</button>
+                            <button onclick="tap_forward()" class="btn btn-primary" id="nextBtn">Weiter</button>
                         </div>
                     </div>
                 </main>
-                <footer>
+                <footer>b
                 </footer>
-                <!-- Lade das DOMPurify CDN-Skript zuerst -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+                
 
-                <script type="module" src='./controller/mainForm.js'></script>
+                <!-- DOMPurify enthält Funktionen die vor CSS schützen-->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+                <script type="module" src='http://localhost/konfigurationsselbstauskunft/controller/m.js'></script>
             </body>
         </html>
 <?php

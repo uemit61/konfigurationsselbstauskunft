@@ -18,19 +18,24 @@
         private $pdo;
         private $dsn;
         
-       function connectionToDb() 
+       function connect_to_db() 
        {
             $this->dsn = "mysql:host=$this->servername;dbname=$this->db;charset=utf8";
             
-
             try 
             {
                 $this->pdo = new PDO($this->dsn, $this->username, $this->pw,$this->options);
-                echo "Connection established";
+?>
+                <script>console.log("Verbindung wurde hergestellt")</script>
+<?php
             } 
             catch (PDOException $e) 
             {
-                echo $e->getMessage();
+                
+?>
+                <script>console.log('Verbindungsfehler: <?php echo $e->getMessage(); ?>.')</script>
+<?php
+            die();
             }
 
             return $this->pdo;

@@ -1,0 +1,66 @@
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px; /* Beispielhöhe, optional */
+}
+
+.navbar-brand {
+    margin: 0; /* Entfernt unnötige Margins */
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+}
+.login-container 
+{
+    max-width: 300px;
+    margin: 20px auto;  
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Weicher Schatten */
+}
+
+
+.login-header
+{
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 200;
+    padding: 0 !important;
+    /* color: rgb(17, 62, 199); */
+}
+
+.form-label 
+{
+    font-size: 0.875rem;
+}
+
+.form-control 
+{
+    font-size: 0.875rem;
+    border-radius: 4px;
+}
+
+.error-messages
+{
+    margin-top: 10px;
+}
+
+.red
+{
+    color: red;
+}
+
+.green
+{
+    color: green;
+}
+
+
+

@@ -10,29 +10,23 @@
 */
 
 
-class Own_Functions
-{
-        
-    function sanitizeVariable($page)
+   
+    function sanitizeVariable($var)
     {
-        $page = preg_replace('/[^a-zA-Z]/', '', $page);
-        $page = trim($page);
-        $page = htmlspecialchars($page, ENT_QUOTES, 'UTF-8');
-        return $page;
+        return htmlspecialchars(trim(strip_tags(preg_replace("/['=\"\\^]+/", '', $var), ENT_QUOTES))); 
     }
 
 
-    function stripTags($array)
+    function sanitizeArray($array)
     {
         foreach($array as $key => $value)
         {
-            // $array[$key] = htmlspecialchars_decode($value, ENT_QUOTES);
-            $array[$key] = strip_tags($array[$key]);
+            $array[$key] = sanitizeVariable($value);
         }
 
         return $array;
     }   
-}
+
 
 
 ?>
