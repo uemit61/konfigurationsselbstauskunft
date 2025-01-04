@@ -26,7 +26,7 @@
             $stmt->bindValue(':Customer_ID',$customer_id);
             $stmt->execute();
 
-            echo "Daten wurden erfolgreich zwichen gespeichert.";
+            echo "Daten wurden erfolgreich zwischen gespeichert.";
     
             $con =null;
         }

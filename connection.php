@@ -25,17 +25,15 @@
             try 
             {
                 $this->pdo = new PDO($this->dsn, $this->username, $this->pw,$this->options);
-?>
-                <script>console.log("Verbindung wurde hergestellt")</script>
-<?php
+
+                echo ("Connecting to database successfully \n");  // Wird in die Console.log vom ajax arg[0][success] eingefügt. 
             } 
             catch (PDOException $e) 
             {
                 
-?>
-                <script>console.log('Verbindungsfehler: <?php echo $e->getMessage(); ?>.')</script>
-<?php
-            die();
+               echo 'Connection to database failed: '. $e->getMessage();
+
+               die();
             }
 
             return $this->pdo;

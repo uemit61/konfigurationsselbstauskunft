@@ -180,12 +180,6 @@
                     $file = fopen("C:\\xampp\\htdocs\\konfigurationsselbstauskunft\\temp\\session\\mySession","w+");
                     fwrite($file, $result['Json_Data']);
                     fclose($file);
-
-
-                    
-
-                    
-                    
                 }
                 catch (PDOException $e)
                 {

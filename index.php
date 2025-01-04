@@ -9,26 +9,8 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-
 <?php 
   
-
-    /*
-        Dieser Codeblock überprüft, ob eine Sitzung noch nicht gestartet wurde (`PHP_SESSION_NONE`), 
-        dann setzt er den Sitzungs-Speicherpfad auf `./temp/session`, startet die Sitzung, weist den 
-        Sitzungsnamen und die Sitzungs-ID dem Superglobal-Array zu und schließt schließlich die Sitzung 
-        für das Schreiben. Dieser Code ist verantwortlich für die Initialisierung einer Sitzung in PHP 
-        und das Speichern von sitzungsbezogenen Informationen. 
-    */
-    // if (session_status() == PHP_SESSION_NONE) 
-    // {   
-    //     session_save_path('./temp/session');    
-    //     session_start();
-    //         $_SESSION['sessionName'] = session_name(); 
-    //         $_SESSION['sessionId'] = session_id();
-    //     session_write_close();
-    // }
-
     require './own_functions.php';
     require './connection.php';
     
@@ -40,26 +22,19 @@
 
     if(!empty($_GET))
     {
-        $page = 'fehler';
-        echo "<script> console.log('GET-Anfragen sind gesperrt');</script>";
+        $page = 'errorpage1';
     }
     
     $uri = $_SERVER['REQUEST_URI'];
     $parts = explode("/", $uri);
-    $lastpart = implode("/", array_slice($parts, 2));
+    $last_part = implode("/", array_slice($parts, 2));
     if (preg_match("#^/konfigurationsselbstauskunft/([^'=\"]+)$#", $_SERVER['REQUEST_URI'], $matches)) 
     {
         $token = $matches[1];
     }
-    else if(!empty($lastpart))
+    else if(!empty($last_part))
     {
-?>
-
-    <h1> 403 Forbidde URL </h1>
-    <p>You don't have permission to access this resource.</p>
-
-<?php
-        die();
+        $page = 'errorpage2';
     }
     
     
@@ -90,24 +65,25 @@
         break;
 
         case 'form_page':
-            require 'C:/xampp/htdocs/konfigurationsselbstauskunft/model/formTab1_model.php';
+            require 'C:/xampp/htdocs/konfigurationsselbstauskunft/model/customerInfo_form_model.php';
             require 'C:/xampp/htdocs/konfigurationsselbstauskunft/view/pages/form_page.php';
             require 'C:/xampp/htdocs/konfigurationsselbstauskunft/controller/customer_controller.php';
-            $controller =new Customer_Controller(new FT1_Model(new Form_Page(),new Connection()));
+            $controller =new Customer_Controller(new Customer_Model(new Form_Page(),new Connection()));
             $controller->start();
         break;
 
         case 'customerInfo':
-            require 'C:/xampp/htdocs/konfigurationsselbstauskunft/model/formTab1_model.php';
-            $model = new FT1_Model(new Form_Page(),new Connection());
-            echo var_dump($data['json_form_data']);
+            require 'C:/xampp/htdocs/konfigurationsselbstauskunft/model/customerInfo_form_model.php';
+            require 'C:/xampp/htdocs/konfigurationsselbstauskunft/view/pages/form_page.php';
+            $model = new Customer_Model(new Form_Page(),new Connection());
+            $model->loading_infos();
             $model->create_database_infos($data['json_form_data'] ?? '');
-                    die();
+            $model->save_to_database();
+            die();
         break;
 
         case 'host':
-            // $controller2->handleRequest();
-            echo 'drin in host';
+          
         break;
 
         case 'client':
@@ -130,6 +106,7 @@
             require 'C:/xampp/htdocs/konfigurationsselbstauskunft/model/cache_model.php';
             $model = new Cache_Model(new Connection());
             $model->save_json_to_db($data['json_form_data']);
+            die();
         break;
 
     }

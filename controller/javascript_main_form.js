@@ -13,7 +13,7 @@
 $(document).ready(function()
 {
  
-    console.log('Login erfolgreqdqdqedich.');
+    console.log('Login erfolgreich.');
 
     $.ajax
     (
@@ -43,7 +43,7 @@ $(document).ready(function()
             } ,
             complete: function()
             {
-                console.log('finished');
+                console.log('Nicht gespeicherte Einträge wurden geladen.');
             }      
         }
     );
@@ -111,7 +111,6 @@ $(document).ready(function()
 
     function save_tabFrom_to_Db() 
     {
-
         const formData =sanitizeInput(formId);
         console.log(formId);
         $.ajax
@@ -119,9 +118,10 @@ $(document).ready(function()
             url: './index.php',
             method: 'POST',
             contentType: 'application/json',
-            data:  JSON.stringify({ formJson: formData, page: $(formId).attr('name')}),
-            success: function () {
-                console.log('Daten erfolgreich gesendet:');
+            data:  JSON.stringify({ json_form_data: formData, page: $(formId).attr('name')}),
+            success: function (response) 
+            {
+                console.log('Daten erfolgreich gesendet:',response);
             },
             error: function (error) {
                 console.error('Fehler bei der Anfrage:');
@@ -134,6 +134,10 @@ $(document).ready(function()
         
     };
 
+    function load_data_from_db()
+    {
+        
+    }
 
         setInterval
         (
@@ -143,7 +147,8 @@ $(document).ready(function()
                 var form_data ={};
                 $.each
                 (
-                    form_ids, 
+                    //enumeration
+                    form_ids,
                     function(i,form_id)
                     {
                         var form_id = '#'+form_id;
@@ -164,8 +169,9 @@ $(document).ready(function()
                             var line = response.split('\n');
                             console.log
                             (
-                                'Daten erfolgreich gesendet. ',
-                                line[13]
+                                'Daten erfolgreich gesendet.\n'+        
+                                line[11]+'\n'+
+                                line[12]
                             );
                         },
                         error: function (xhr, status, error) 
@@ -191,7 +197,7 @@ $(document).ready(function()
                 );
             },
             
-            5000
+            3000
         );  
 
     // $.ajax // könnte auch über eien $_SESSION verwirklicht werden Kommentar nicht vergessen!

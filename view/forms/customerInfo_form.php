@@ -29,7 +29,7 @@
                         </select>
                     </div>
                     <div class="col-4">
-                        <input type="text" class="form-control" id="Name" name="Name" placeholder="Vorname">
+                        <input type="text" class="form-control" id="PersonName" name="PersonName" placeholder="Vorname">
                     </div>
                     <div class="col-5">
                         <input type="text" class="form-control" id="Surname" name="Surname" placeholder="Nachname">
@@ -38,7 +38,7 @@
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Telefon</label>
-                <input type="text" class="form-control" id="phone" name="Phone" placeholder="Telefon">
+                <input type="text" class="form-control" id="Phone" name="Phone" placeholder="Telefon">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">E-Mail</label>
