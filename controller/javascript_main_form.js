@@ -189,7 +189,7 @@ $(document).ready(function()
                                 "Die Daten wurden nur in ein  Cache gespeichert,\n"
                                 +"um in die Datenbank zu speichern,\n"
                                 +"drücken Sie auf die Speicherbuttons.\n"
-                                +"Nächste Speicherung in 5 sekunden"
+                                +"Nächste Speicherung in 3 sekunden"
                                 
                             );
                         }

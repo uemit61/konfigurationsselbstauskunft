@@ -104,7 +104,7 @@
 
         case 'save_json_cache':
             require 'C:/xampp/htdocs/konfigurationsselbstauskunft/model/cache_model.php';
-            $model = new Cache_Model(new Connection());
+            $model = new Cache_Model(new Connection(true));
             $model->save_json_to_db($data['json_form_data']);
             die();
         break;
