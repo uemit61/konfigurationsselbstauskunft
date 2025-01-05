@@ -8,13 +8,19 @@
     * @since       2024-12-18
     */
 
-    require 'C:/xampp/htdocs/konfigurationsselbstauskunft/view/own_templates/heads.php';
-    require 'C:/xampp/htdocs/konfigurationsselbstauskunft/view/own_templates/headers.php';
-    require 'C:/xampp/htdocs/konfigurationsselbstauskunft/view/forms/login_form.php';
-    require 'C:/xampp/htdocs/konfigurationsselbstauskunft/view/forms/password_form.php';
+    require 'C:/xampp/htdocs/kundenselbstauskunft.lions.de/view/own_templates/heads.php';
+    require 'C:/xampp/htdocs/kundenselbstauskunft.lions.de/view/own_templates/headers.php';
+    require 'C:/xampp/htdocs/kundenselbstauskunft.lions.de/view/forms/login_form.php';
+    require 'C:/xampp/htdocs/kundenselbstauskunft.lions.de/view/forms/password_form.php';
 
     class Login_Page
     {
+        private $logo = null;
+
+        function __construct()
+        {
+            
+        }
         function render($token_active=false,$go_to_main_form)
         {
             
@@ -46,7 +52,7 @@
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
 
                 <!-- Eigene JavaScript  -->
-                <script type="modul" src="/konfigurationsselbstauskunft/controller/javascript_start_form.js"></script>
+                <script src=/kundenselbstauskunft.lions.de/controller/javascript_start_form.js"></script>
             </body>
             </html>
 <?php

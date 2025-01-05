@@ -19,7 +19,6 @@
 
                 if($action  === "Speichern")
                 {
-                    
                     $this->model->save_password($_POST['password']);
                     session_start();
                         $_SESSION['page']= 'form_page';
@@ -29,8 +28,8 @@
                 }
                 else if($action === "Anmelden")
                 {
-                    // echo '<script>console.log("'.$_POST['Loginname'].$_POST['Password'].'");</script>';
-                    $this->model->check_password($_POST['Loginname'],$_POST['Password']);
+                    
+                    $this->model->check_password($_POST['Loginname'],$_POST['Password']); // 
                     header('Location: ./index.php');
                     exit();
                 }
@@ -38,7 +37,7 @@
             else
             {
                 $this->model->check_token();
-                $this->model->update_view(null,false);
+                $this->model->update_view(null,false,);  // logo übergebe anhand request_uri
                 exit();
             }
             

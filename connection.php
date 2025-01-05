@@ -15,9 +15,15 @@
       private $username = "root";
       private $pw = "";
       private $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_EMULATE_PREPARES => false];
-      private $pdo;
-      private $dsn;
-      function connect_to_db($ajax_procedure=false) 
+      private $pdo = null;
+      private $dsn = null;
+      private $ajax_procedure = null;
+
+      function __construct($ajax_procedure=false)
+      {
+         $this->ajax_procedure = $ajax_procedure;
+      }
+      function connect_to_db() 
       {
          $this->dsn = "mysql:host=$this->servername;dbname=$this->db;charset=utf8";
          
@@ -25,14 +31,16 @@
          {
             $this->pdo = new PDO($this->dsn, $this->username, $this->pw,$this->options);
 
-            if($ajax_procedure)
+            if($this->ajax_procedure)
             {
-               echo ("Verbindung zur Datenbank erfolglreich. \n");  // Wird in die console.log vom ajax arg[0][success] eingefügt. 
+               echo ("Verbindung zur Datenbank erfolglreich.\n");  // Wird in die console.log vom ajax arg[0][success] eingefügt. 
             }
             else
             {
 ?>
-                  <script>console.log("Verbindung zur Datenbank erfolglreich.");</script>
+   <!DOCTYPE html>
+   <html lang="en">
+   <script>console.log("Verbindung zur Datenbank erfolglreich.");</script>
 <?php
                }
             } 

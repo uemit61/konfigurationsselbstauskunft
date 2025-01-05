@@ -58,9 +58,8 @@ class Customer_Model
                     $this->address[$key] =$arrVal;
                 }
           }
-           
         }
-        $this->contact_information['Saved'] = true;
+        
     }
 
     function loading_infos()
@@ -69,9 +68,12 @@ class Customer_Model
         {
             $con = $this->pdo->connect_to_db();
 
-            $query ="SELECT `address`.`Address_ID`,`contact_person`.`Contact_Person_ID`,`contact_information`.`Contact_Information_ID`, `contact_information`.`Saved` 
-                     FROM `contact_information`, `contact_person`,`address` 
-                     WHERE  `contact_information`.`Customer_ID` = :customer_id";
+            $query= "SELECT `address`.`Address_ID`,`contact_person`.`Contact_Person_ID`,
+                            `contact_information`.`Contact_Information_ID`, `contact_information`.`Saved`
+                            '
+                    FROM   `contact_information`, `contact_person`,`address`, `glorixx_customer`,
+                    WHERE  `contact_information`.`Customer_ID` = :customer_id 
+                    OR `glorixx_customer`.`Gorixx_Customer_ID` = :glorixx_customer_id";
 
             $stmt = $con->prepare($query);
             $stmt->bindValue('customer_id', $this->customer_id, PDO::PARAM_INT);
@@ -81,11 +83,13 @@ class Customer_Model
             if(empty($result['Saved']))
             {
                 $this->is_saved = false;
+                $this->contact_information['Saved'] = true;
             }
             else
             {
                 $this->is_saved = true;
                 $this->contact_information_id = $result['Contact_Information_ID'];
+                $this->contact_information['Contact_Information_ID'] = $this->contact_information_id;
 
                 $this->contact_person_id = $result['Contact_Person_ID'];
                 $this->contact_person['Contact_Person_ID'] = $this->contact_person_id;
@@ -121,8 +125,6 @@ class Customer_Model
                 $stmt= $con->prepare($query);
                 $stmt->execute($this->contact_information);
 
-                
-                echo var_dump($this->contact_person);
                 $query ="UPDATE `contact_person` 
                          SET Gender = :Gender, PersonName = :PersonName, Surname = :Surname 
                          WHERE Contact_Person_ID = :Contact_Person_ID 
@@ -130,8 +132,6 @@ class Customer_Model
                 $stmt = $con->prepare($query);
                 $stmt->execute($this->contact_person);
 
-                
-                echo var_dump($this->address);
                 $query = "UPDATE `address` 
                          SET `Street` = :Street, `House_Number` = :House_Number, `Postcode` = :Postcode, `City` = :City 
                          WHERE `address`.`Address_ID` = :Address_ID
@@ -183,7 +183,7 @@ class Customer_Model
         catch (PDOException $e)
         {
             $this->contact_information['Saved'] = false;
-            echo "Fehler Update".$e->getMessage();
+            echo "Fehler ".$e->getMessage();
         }
 
         $con = null;

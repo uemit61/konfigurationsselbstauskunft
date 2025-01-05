@@ -1,7 +1,7 @@
 
 
 /**
-* @file        mainForm.js
+* @file        javascript_main_Form.js
 * @author      Ümit Yildirim hopes61@icloud.com
 * @copyright   Copyright (c) 2024, Ümit Yildirim. Alle Rechte vorbehalten.
 * @license     Diese Datei darf nicht ohne Zustimmung des Autors weitergegeben oder verändert werden.
@@ -169,9 +169,9 @@ $(document).ready(function()
                             var line = response.split('\n');
                             console.log
                             (
-                                'Daten erfolgreich gesendet.\n'+        
-                                line[11]+'\n'+
-                                line[12]
+                                'Daten erfolgreich gesendet.\n'+   
+                               line[11]+'\n'+
+                               line[12]
                             );
                         },
                         error: function (xhr, status, error) 
