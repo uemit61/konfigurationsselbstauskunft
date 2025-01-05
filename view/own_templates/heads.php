@@ -14,7 +14,7 @@
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
             <!-- Custom CSS -->
-            <link  rel='stylesheet' href='/kundenselbstauskunft.lions.de/view/css/styles.css'>
+            <link  rel='stylesheet' href='/kundenselbstauskunft_lions_de/view/css/styles.css'>
             
             <!-- JQUERY-->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

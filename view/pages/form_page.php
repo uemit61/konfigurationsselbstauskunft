@@ -110,7 +110,7 @@ class Form_Page
 
                 <!-- DOMPurify enthält Funktionen die vor CSS schützen-->
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
-                <script type="module" src='/konfigurationsselbstauskunft/controller/javascript_main_form.js'></script>
+                <script type="module" src='/kundenselbstauskunft_lions_de/controller/javascript_main_form.js'></script>
             </body>
         </html>
 <?php

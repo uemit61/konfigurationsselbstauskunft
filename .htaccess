@@ -1,14 +1,13 @@
 
-
-
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /kundenselbstauskunft.lions.de/
 
-    # Bedingungen: Wenn die angeforderte Datei oder das Verzeichnis nicht existiert
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
+    # Verhindern der Endlosschleife, wenn die Anfrage bereits zu index.php geht
+    RewriteCond %{REQUEST_URI} !^/kundenselbstauskunft_lions_de/index.php
+    
+    # Weiterleitung aller anderen Anfragen zu index.php
+    RewriteRule ^(.*)$ /kundenselbstauskunft_lions_de/index.php/$1 [L,R=301]
 
-    # Regel: Leite alle Anfragen an index.php weiter, wobei der Pfad als Parameter übergeben wird
-    RewriteRule ^(.*)$ index.php/$1 [L]
 </IfModule>
+
+

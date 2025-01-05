@@ -52,6 +52,7 @@
             }
             try
             {
+                
                 $con = $this->pdo->connect_to_db();
 
                 $query = "SELECT * FROM `token` where `Token_Key` = :Token";
@@ -60,6 +61,7 @@
                 $stmt->execute();
 
                  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
             }
             catch(PDOException $e)
             {

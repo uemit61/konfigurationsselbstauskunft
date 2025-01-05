@@ -29,51 +29,47 @@
     $last_part = implode("/", array_slice($parts, 3));
     
     
-    if (preg_match("#^/Kundenselbstauskunft.lions.de/([^'=\"]+)$#", $_SERVER['REQUEST_URI'], $matches)) 
+    if (!preg_match("/[\^'=\"]/", $uri, $matches)) 
     {
-        $token = $matches[1];
+        $token=$last_part;
     }
-    else if(!empty($last_part))
+    
+    if($data == null)
     {
-       
+        session_start();
+        $page = $_SESSION['page'] ?? 'start_page';
     }
-        if($data == null)
-        {
-            session_start();
-            $page = $_SESSION['page'] ?? 'start_page';
-          
-        }
-        else
-        {  
-            session_start();
-                $page = $data['page'] ?? 'start_page';
-        }
-        $_SESSION['page']=null;
-        session_write_close();
+    else
+    {  
+        session_start();
+            $page = $data['page'] ?? 'start_page';
+    }
+    $_SESSION['page']=null;
+    session_write_close();
         
 
 
     switch ($page)
     {
         case 'start_page':
-            require 'C:/xampp/htdocs/Kundenselbstauskunft.lions.de/model/start_model.php';
-            require 'C:/xampp/htdocs/Kundenselbstauskunft.lions.de/view/pages/start_page.php';
-            require 'C:/xampp/htdocs/Kundenselbstauskunft.lions.de/controller/start_controller.php';
+            require 'C:/xampp/htdocs/Kundenselbstauskunft_lions_de/model/start_model.php';
+            require 'C:/xampp/htdocs/Kundenselbstauskunft_lions_de/view/pages/start_page.php';
+            require 'C:/xampp/htdocs/Kundenselbstauskunft_lions_de/controller/start_controller.php';
             $controller = new Start_Controller(new Start_Model($token,new Login_Page(), new Connection()));
             $controller->handleRequest();
         break;
 
         case 'form_page':
-            require 'C:/xampp/htdocs/Kundenselbstauskunft.lions.de/model/customerInfo_form_model.php';
-            require 'C:/xampp/htdocs/Kundenselbstauskunft.lions.de/view/pages/form_page.php';
-            require 'C:/xampp/htdocs/Kundenselbstauskunft.lions.de/controller/customer_controller.php';
+            require 'C:/xampp/htdocs/Kundenselbstauskunft_lions_de/model/customerInfo_form_model.php';
+            require 'C:/xampp/htdocs/Kundenselbstauskunft_lions_de/view/pages/form_page.php';
+            require 'C:/xampp/htdocs/Kundenselbstauskunft_lions_de/controller/customer_controller.php';
             $controller =new Customer_Controller(new Customer_Model(new Form_Page(),new Connection()));
             $controller->start();
         break;
 
         case 'customerInfo':
-            require 'C:/xampp/htdocs/Kundenselbstauskunft.lions.de/model/customerInfo_form_model.php';
-            require 'C:/xampp/htdocs/Kundenselbstauskunft.lions.de/view/pages/form_page.php';
+            require 'C:/xampp/htdocs/Kundenselbstauskunft_lions_de/model/customerInfo_form_model.php';
+            require 'C:/xampp/htdocs/Kundenselbstauskunft_lions_de/view/pages/form_page.php';
             $model = new Customer_Model(new Form_Page(),new Connection());
             $model->loading_infos();
             $model->create_database_infos($data['json_form_data'] ?? '');
@@ -102,7 +98,7 @@
         break;
 
         case 'save_json_cache':
-            require 'C:/xampp/htdocs/Kundenselbstauskunft.lions.de/model/cache_model.php';
+            require 'C:/xampp/htdocs/Kundenselbstauskunft_lions_de/model/cache_model.php';
             $model = new Cache_Model(new Connection(true));
             $model->save_json_to_db($data['json_form_data']);
             die();
