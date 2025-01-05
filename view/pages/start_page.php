@@ -52,7 +52,7 @@
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
 
                 <!-- Eigene JavaScript  -->
-                <script src=/kundenselbstauskunft.lions.de/controller/javascript_start_form.js"></script>
+                <script src=/kundenselbstauskunft.lions.de/controller/javascript_password_form.js></script>
             </body>
             </html>
 <?php
